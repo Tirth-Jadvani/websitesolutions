@@ -9,6 +9,7 @@
     <title>t softwares | Contact Us</title>
     <link rel="icon" href="../img/logo.PNG">
     
+    
     <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
@@ -226,6 +227,9 @@
                 <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Portfolio</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="about.html">About Us</a>
               </li>
               <li class="nav-item active">
@@ -367,6 +371,24 @@
       margin-top: 20px !important;
       margin-bottom: 8px !important;
     }
+    #resp1{
+      margin-bottom: 50px;
+      margin-left: 5px;
+      color: #339e28;
+      
+    }
+    #resp{
+      margin-bottom: 50px;
+      margin-left: 5px;
+      color: #339e28;
+      
+    }
+    #resp #al{
+      
+      color: red;
+      
+    }
+    
   </style>
   <div id="contact">
     <br><br>
@@ -379,29 +401,29 @@
                 
                 
 
-                <form action="contact.php#subm" method="POST" class="contact100-form validate-form">
+                <form method="POST" class="contact100-form validate-form">
                     
     
                     <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
                         <span class="label-input100">Your Name</span>
-                        <input class="input100" type="text" name="name" placeholder="Enter your name">
+                        <input id="name" class="input100" type="text" name="name" placeholder="Enter your name">
                         <span class="focus-input100"></span>
                     </div>
     
                     <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                         <span class="label-input100">Email</span>
-                        <input class="input100" type="text" name="email" placeholder="Enter your email address">
+                        <input id="email" class="input100" type="text" name="email" placeholder="Enter your email address">
                         <span class="focus-input100"></span>
                     </div>
     
                     <div class="wrap-input100 validate-input" data-validate = "Message is required">
                         <span class="label-input100">Message</span>
-                        <textarea class="input100" name="message" placeholder="Your message here..."></textarea>
+                        <textarea id="message" class="input100" name="message" placeholder="Your message here..."></textarea>
                         <span class="focus-input100"></span>
                     </div>
     
                     <div class="container-contact100-form-btn">
-                        <button class="contact100-form-btn">
+                        <button id="subm" type="button" class="contact100-form-btn">
                             <span>
                                 Submit
                                 <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -409,6 +431,35 @@
                         </button>
                     </div>
                 </form>
+                <p id="resp1"></p>
+                <p id="resp"></p>
+
+                <script>
+                  $(document).ready(function(){
+                    
+                    $('#subm').click(function(){
+                      document.getElementById('resp1').outerHTML = '<p id="resp1">Please Wait...</p>';
+                      $('html, body').animate({
+                          scrollTop: $("#message").offset().top
+                      });
+                      $.post("contact.php",
+                      
+                      {name: $('#name').val(), email: $('#email').val(), message: $('#message').val()},
+              
+                      function(data){
+                        
+                        $('#resp').html(data);
+
+              
+                      });
+              
+                    });
+              
+              
+                  })(jQuery);
+              
+                </script>
+                
             
         </div>
         <div id="hide" class="col md-col-1"></div>
@@ -427,7 +478,7 @@
             
         </div>
         <br>
-        <!--Buttons-->
+        
         <div class="row text-center">
           <div class="col-md-4">
             <a href="https://www.google.com/maps/place/New+Delhi,+Delhi/@28.5272803,77.068899,11z/data=!3m1!4b1!4m5!3m4!1s0x390cfd5b347eb62d:0x52c2b7494e204dce!8m2!3d28.6139391!4d77.2090212" target="_blank" class="btn-floating blue accent-1"><i id="acont" class="fa fa-3x fa-map-marker"></i></a>
@@ -447,12 +498,14 @@
             <a href="mailto: sale@gmail.com" style="text-decoration: none; color: #5c5c5c;" id="pcont">sale@gmail.com</a>
           </div>
         </div>
+        <hr class="featurette-divider">
       </div>
     </div>
 
   </div>
   </div>
-  <br><br>
+  
+  
   <!-- FOOTER -->
   <style>
     #topsc{
@@ -516,5 +569,6 @@
      });
   
    </script>
+   
   </body>
 </html>
